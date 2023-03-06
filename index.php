@@ -47,32 +47,32 @@
 
                 <div class="row">
 
-                    <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-8 col-12 d-flex flex-column align-self-center mx-auto">
+                    <div class="col-xxl-8 col-xl-5 col-lg-5 col-md-8 col-12 d-flex flex-column align-self-center mx-auto">
                         <div class="card mt-3 mb-3">
                             <div class="card-body">
 
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
 
-                                        <h2>Sign In</h2>
+                                        <h2>KMUTNB Smart Service Management</h2>
                                         <p>Enter your Username and password to login</p>
 
                                     </div>
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label class="form-label">Username</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" required v-model="admin_username">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="mb-4">
                                             <label class="form-label">Password</label>
-                                            <input type="text" class="form-control">
+                                            <input type="password" class="form-control" required v-model="admin_password">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="mb-4">
-                                            <button class="btn btn-secondary w-100">SIGN IN</button>
+                                            <button class="btn btn-warning w-100" @click="login()">เข้าสู่ระบบ</button>
                                         </div>
                                     </div>
                                 </div>
@@ -93,20 +93,54 @@
     <script src="./vue/vue.global.js"></script>
     <script src="./vue/axios.min.js"></script>
     <script src="./vue/sweetalert2.all.min.js"></script>
+
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     <script>
         Vue.createApp({
             data() {
                 return {
-                    username: '',
-                    password: '',
+                    admin_username: '',
+                    admin_password: '',
                 };
             },
             methods: {
-
+                login() {
+                    axios.post("./api/api_login.php", {
+                        action: 'login',
+                        admin_username: this.admin_username,
+                        admin_password: this.admin_password
+                    }).then((res) => {
+                        let {
+                            status,
+                            admin_level,
+                            meg
+                        } = res.data;
+                        if (status) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: meg,
+                                showConfirmButton: false,
+                                timer: 1500,
+                            }).then(() => {
+                                if (admin_level == 0) {
+                                    location.replace("./admin/");
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                text: meg,
+                            });
+                        }
+                        console.log(res.data);
+                    }).catch((err) => {
+                        console.error(err);
+                    })
+                }
             },
             created() {
-                console.log("login")
+                // console.log("login")
             },
         }).mount("#login");
     </script>

@@ -7,11 +7,10 @@ $db_name = "db_kmutnb_smart_service";
 
 // Create connection
 $conn = new mysqli($hostname, $db_user, $db_pass, $db_name);
-$conn -> set_charset("utf8");
+$conn->set_charset("utf8");
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-
-?>
+  die("Connection failed: " . $conn->connect_error);
+}
+$dateTime = date("Y-m-d H:i:s");

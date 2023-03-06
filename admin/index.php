@@ -1,3 +1,21 @@
+<?php
+session_start();
+if (isset($_SESSION['admin_id'])) {
+    if (!$_SESSION['admin_level'] == 0) {
+        echo '<script type="text/javascript">';
+        echo 'location.replace("./logout.php");';
+        echo 'alert("คุณไม่มีสิทธื์เข้าถึงหน้านี้")';
+        echo '</script>';
+    }
+} else {
+    echo '<script type="text/javascript">';
+    echo 'location.replace("./index.php");';
+    echo 'alert("เข้าสู่ระบบก่อนเข้าถึงหน้านี้")';
+    echo '</script>';
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once './layouts/header.php'; ?>
