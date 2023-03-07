@@ -16,6 +16,7 @@
     feather.replace();
 </script>
 <script src="../src/assets/js/custom.js"></script>
+<script src="https://kit.fontawesome.com/b8b5c12775.js" crossorigin="anonymous"></script>
 <!-- <script src="../src/plugins/src/global/vendors.min.js"></script> -->
 
 <!-- <script>      $('#table').DataTable();</script> -->

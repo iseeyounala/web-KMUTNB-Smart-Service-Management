@@ -38,15 +38,20 @@
 
     <link rel="stylesheet" type="text/css" href="../src/plugins/css/light/table/datatable/dt-global_style.css">
     <link rel="stylesheet" type="text/css" href="../src/plugins/css/dark/table/datatable/dt-global_style.css">
-
-    <script src="../src/plugins/src/global/vendors.min.js"></script>
     <script src="../src/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../src/plugins/src/global/vendors.min.js"></script>
     <script src="../layouts/vertical-light-menu/app.js"></script>
-    <script src="../src/plugins/src/table/datatable/datatables.js"></script>
     <script src="../vue/vue.global.js"></script>
     <script src="../vue/axios.min.js"></script>
     <script src="../vue/sweetalert2.all.min.js"></script>
     <script src="../vue/moment.js"></script>
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <script src="../src/plugins/src/table/datatable/datatables.js"></script>
+    <!-- <link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css"> -->
+
+    <!-- <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script> -->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/b8b5c12775.css" crossorigin="anonymous">
+
+
 
 </head>
