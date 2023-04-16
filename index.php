@@ -2,100 +2,71 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>KMUTNB Smart Service Management</title>
-    <link rel="icon" type="image/x-icon" href="./src/assets/img/favicon.ico" />
-    <link href="./layouts/vertical-light-menu/css/light/loader.css" rel="stylesheet" type="text/css" />
-    <link href="./layouts/vertical-light-menu/css/dark/loader.css" rel="stylesheet" type="text/css" />
-    <script src="./layouts/vertical-light-menu/loader.js"></script>
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-    <link href="./src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>เข้าสู่ระบบ || Admin</title>
 
-    <link href="./layouts/vertical-light-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
-    <link href="./src/assets/css/light/authentication/auth-boxed.css" rel="stylesheet" type="text/css" />
-
-    <link href="./layouts/vertical-light-menu/css/dark/plugins.css" rel="stylesheet" type="text/css" />
-    <link href="./src/assets/css/dark/authentication/auth-boxed.css" rel="stylesheet" type="text/css" />
-    <!-- END GLOBAL MANDATORY STYLES -->
-    <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
-    <style>
-        body {
-            font-family: 'Kanit';
-            font-size: 22px;
-        }
-    </style>
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+	<!-- icheck bootstrap -->
+	<link rel="stylesheet" href="./plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="./dist/css/adminlte.min.css">
 </head>
 
-<body class="form">
-
-    <!-- BEGIN LOADER -->
-    <div id="load_screen">
-        <div class="loader">
-            <div class="loader-content">
-                <div class="spinner-grow align-self-center"></div>
-            </div>
-        </div>
-    </div>
-    <!--  END LOADER -->
-    <div id="login">
-        <div class="auth-container d-flex">
-
-            <div class="container mx-auto align-self-center">
-
-                <div class="row">
-
-                    <div class="col-xxl-8 col-xl-5 col-lg-5 col-md-8 col-12 d-flex flex-column align-self-center mx-auto">
-                        <div class="card mt-3 mb-3">
-                            <div class="card-body">
-
-                                <div class="row">
-                                    <div class="col-md-12 mb-3">
-
-                                        <h2>KMUTNB Smart Service Management</h2>
-                                        <p>Enter your Username and password to login</p>
-
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Username</label>
-                                            <input type="text" class="form-control" required v-model="admin_username">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="mb-4">
-                                            <label class="form-label">Password</label>
-                                            <input type="password" class="form-control" required v-model="admin_password">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="mb-4">
-                                            <button class="btn btn-warning w-100" @click="login()">เข้าสู่ระบบ</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="./src/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="./vue/vue.global.js"></script>
-    <script src="./vue/axios.min.js"></script>
-    <script src="./vue/sweetalert2.all.min.js"></script>
-
-    <!-- END GLOBAL MANDATORY SCRIPTS -->
-    <script>
+<body class="hold-transition login-page">
+	<div id="login">
+		<div class="login-box">
+			<!-- /.login-logo -->
+			<div class="card card-outline card-warning">
+				<div class="card-header text-center">
+					<a href="index.php" class="h1"><b>KMUTNB </b>SmartService</a>
+				</div>
+				<div class="card-body">
+					<p class="login-box-msg">เข้าสู่ระบบก่อนเข้าใช้งาน</p>
+					<div action="index3.html" method="post">
+						<div class="input-group mb-3">
+							<input v-model="admin_username" type="text" class="form-control" placeholder="Username">
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-user"></span>
+								</div>
+							</div>
+						</div>
+						<div class="input-group mb-3">
+							<input v-model="admin_password" type="password" class="form-control" placeholder="Password">
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-lock"></span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div v-if="admin_username != '' && admin_password != '' ">
+									<button type="submit" class="btn btn-primary btn-block" @click="login()">เข้าสู่ระบบ</button>
+								</div>
+								<div v-else="admin_username == '' && admin_password == '' ">
+									<button disabled type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
+								</div>
+							</div>
+							<!-- /.col -->
+						</div>
+					</div>
+					<!-- /.social-auth-links -->
+				</div>
+				<!-- /.card-body -->
+			</div>
+			<!-- /.card -->
+		</div>
+		<!-- /.login-box -->
+	</div>
+	<script src="./vue/vue.global.js"></script>
+	<script src="./vue/axios.min.js"></script>
+	<script src="./vue/sweetalert2.all.min.js"></script>
+	<script>
         Vue.createApp({
             data() {
                 return {
@@ -105,7 +76,7 @@
             },
             methods: {
                 login() {
-                    axios.post("./api/api_login.php", {
+                    axios.post("./action/admin/action.php", {
                         action: 'login',
                         admin_username: this.admin_username,
                         admin_password: this.admin_password
@@ -124,7 +95,7 @@
                                 timer: 1500,
                             }).then(() => {
                                 if (admin_level == 0) {
-                                    location.replace("./admin/");
+                                    location.replace("./admin/admin_page.php");
                                 }
                             });
                         } else {
@@ -144,7 +115,12 @@
             },
         }).mount("#login");
     </script>
-
+	<!-- jQuery -->
+	<script src="../plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../dist/js/adminlte.min.js"></script>
 </body>
 
 </html>
