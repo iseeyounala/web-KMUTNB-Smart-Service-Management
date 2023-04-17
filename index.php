@@ -76,8 +76,8 @@
             },
             methods: {
                 login() {
-                    axios.post("./action/admin/action.php", {
-                        action: 'login',
+                    axios.post("./action/api_login.php", {
+                        // action: 'login',
                         admin_username: this.admin_username,
                         admin_password: this.admin_password
                     }).then((res) => {
@@ -96,7 +96,9 @@
                             }).then(() => {
                                 if (admin_level == 0) {
                                     location.replace("./admin/admin_page.php");
-                                }
+                                }else if(admin_level == 2) {
+									location.replace("./room/room_page.php");
+								}
                             });
                         } else {
                             Swal.fire({

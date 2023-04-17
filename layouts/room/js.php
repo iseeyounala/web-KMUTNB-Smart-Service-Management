@@ -1,7 +1,8 @@
-<script src="../vue/vue_2.6.14.js"></script>
+<script src="../vue/vue.global.js"></script>
 <script src="../vue/axios.min.js"></script>
 <script src="../vue/sweetalert2.all.min.js"></script>
-
+<script src="../vue/moment-with-locales.js"></script>
+<script src="../vue/qrcode.min.js"></script>
 
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
@@ -9,7 +10,7 @@
 <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+	$.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -23,7 +24,7 @@
 <!-- jQuery Knob Chart -->
 <script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="../plugins/moment/moment.min.js"></script>
+<!-- <script src="../plugins/moment/moment.min.js"></script> -->
 <script src="../plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>

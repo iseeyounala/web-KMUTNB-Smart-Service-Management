@@ -1,9 +1,9 @@
 <?php
 session_start();
 if (isset($_SESSION['admin_id'])) {
-    if (!$_SESSION['admin_level'] == 0) {
+    if (!$_SESSION['admin_level'] == 0 && !$_SESSION['admin_level'] == 2) {
         echo '<script type="text/javascript">';
-        echo 'location.replace("../logout.php");';
+        echo 'location.replace("./logout.php");';
         echo 'alert("คุณไม่มีสิทธื์เข้าถึงหน้านี้")';
         echo '</script>';
     }
@@ -20,18 +20,18 @@ if (isset($_SESSION['admin_id'])) {
 <html lang="en">
 
 <head>
-    <?php require_once '../layouts/admin/header.php'; ?>
+    <?php require_once '../layouts/room/header.php'; ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <?php require_once '../layouts/admin/js.php' ?>
+    <?php require_once '../layouts/room/js.php' ?>
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
         </div>
-        <?php require_once '../layouts/admin/navbar.php' ?>
-        <?php require_once '../layouts/admin/sidebar.php' ?>
+        <?php require_once '../layouts/room/navbar.php' ?>
+        <?php require_once '../layouts/room/sidebar.php' ?>
         <div class="content-wrapper">
             <?php
             if (isset($_REQUEST['page'])) {
@@ -41,7 +41,7 @@ if (isset($_SESSION['admin_id'])) {
             }
             ?>
         </div>
-        <?php require_once '../layouts/admin/footer.php'; ?>
+        <?php require_once '../layouts/room/footer.php'; ?>
     </div>
 </body>
 <script>
