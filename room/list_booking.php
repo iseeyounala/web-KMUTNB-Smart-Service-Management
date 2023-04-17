@@ -213,6 +213,48 @@
                 this.booking_date = '';
                 this.booking_start_time = '';
                 this.booking_end_time = '';
+            },
+            handle_del(data) {
+                Swal.fire({
+                    title: "ต้องการลบข้อมูล?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "ยืนยัน",
+                    cancelButtonText: "ยกเลิก",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.post("../action/room/action.php", {
+                            action: 'del_booking',
+                            booking_rtt_id: data.booking_rtt_id,
+                        }).then((res) => {
+                            let {
+                                status,
+                                meg
+                            } = res.data;
+                            if (status) {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: meg,
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                });
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 2000);
+                            } else {
+                                Swal.fire({
+                                    icon: "error",
+                                    text: meg,
+                                });
+                            }
+                        }).catch((err) => {
+                            console.error(err)
+                        })
+                    }
+                });
             }
         },
         created() {

@@ -214,6 +214,23 @@ switch ($action) {
         }
         echo json_encode($data);
         break;
+    case 'del_booking':
+        $booking_rtt_id = $request_data->booking_rtt_id;
+        $sql = "DELETE FROM tb_booking_room_tutor WHERE booking_rtt_id = '" . $booking_rtt_id . "'";
+        $result = $conn->query($sql);
+        if ($result) {
+            $data = [
+                'status' => true,
+                'meg' => 'ลบข้อมูลสำเร็จ'
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'meg' => $conn->error
+            ];
+        }
+        echo json_encode($data);
+        break;
     default:
         # code...
         break;
