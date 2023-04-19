@@ -139,9 +139,7 @@
     </section>
 </div>
 
-<script type="text/javascript">
-    // new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
-</script>
+
 
 <script>
     Vue.createApp({
@@ -169,12 +167,14 @@
                         result
                     } = res.data;
                     if (status) {
-                        result.map((val, idx) => {
-                            val.booking_date = moment(val.booking_date).format('LL');
-                            if (idx == result.length - 1) {
-                                this.list_booking = result;
-                            }
-                        })
+                        if (result.length > 0) {
+                            result.map((val, idx) => {
+                                val.booking_date = moment(val.booking_date).format('LL');
+                                if (idx == result.length - 1) {
+                                    this.list_booking = result;
+                                }
+                            })
+                        }
                     }
                     $(document).ready(function() {
                         $('#table_id').DataTable();
@@ -260,7 +260,21 @@
         created() {
             this.get_list_booking();
             moment.locale('th');
-
+            socket.on("booking_room_new", () => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "มีรายการจองเข้ามาใหม่",
+                    text: "โปรดตรวจสอบข้อมูล",
+                    showConfirmButton: false,
+                    timer: 1500,
+                }).then(() => {
+                    $(document).ready(function() {
+                        $('#table_id').DataTable().destroy();
+                    });
+                    this.get_list_booking();
+                })
+            })
         },
     }).mount("#list_booking");
 </script>

@@ -3,6 +3,17 @@
 <script src="../vue/sweetalert2.all.min.js"></script>
 <script src="../vue/moment-with-locales.js"></script>
 <script src="../vue/qrcode.min.js"></script>
+<script src="../vue/socket.io.min.js"></script>
+<script type="text/javascript">
+	// new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+	const socket = io('http://localhost:3001', {
+		transports: ['websocket', 'polling', 'flashsocket']
+	});
+	// socket.on('connect', function() {
+	//     // socket.on('event', function(data) {});
+	//     // socket.on('disconnect', function() {});
+	// });
+</script>
 
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>

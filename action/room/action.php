@@ -199,9 +199,14 @@ switch ($action) {
                                                         LEFT JOIN tb_room_tutor AS c ON a.rtt_id = c.rtt_id WHERE a.booking_status = 0 OR a.booking_status = 1";
         $result = $conn->query($sql);
         if ($result) {
-            while ($row = $result->fetch_object()) {
-                $data_[] = $row;
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_object()) {
+                    $data_[] = $row;
+                }
+            } else {
+                $data_ = [];
             }
+
             $data = [
                 'status' => true,
                 'result' => $data_
