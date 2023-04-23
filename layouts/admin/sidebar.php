@@ -35,14 +35,14 @@
        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
          <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-         <li class="nav-item">
+         <!-- <li class="nav-item">
            <a href="./admin_page.php?page=dash" class="nav-link">
              <i class="nav-icon fas fa-tachometer-alt"></i>
              <p>
                Dashboard
              </p>
            </a>
-         </li>
+         </li> -->
          <li class="nav-header">ผู้ดูแลระบบ</li>
          <li class="nav-item">
            <a href="./admin_page.php?page=add_admin" class="nav-link">
@@ -64,10 +64,20 @@
          </li>
          <li class="nav-header">นักศึกษา</li>
          <li class="nav-item">
-           <a href="./admin_page.php?page=doc_petition" class="nav-link">
+           <a href="./admin_page.php?page=list_student" class="nav-link">
              <i class="nav-icon fa fa-archive"></i>
              <p>
                รายชื่อนักศึกษา
+               <!-- <span class="badge badge-info right">2</span> -->
+             </p>
+           </a>
+         </li>
+         <li class="nav-header">ประกาศ</li>
+         <li class="nav-item">
+           <a href="./admin_page.php?page=announcement_list" class="nav-link">
+             <i class="nav-icon fa fa-archive"></i>
+             <p>
+               รายการ
                <!-- <span class="badge badge-info right">2</span> -->
              </p>
            </a>

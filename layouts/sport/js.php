@@ -1,6 +1,8 @@
 <script src="../vue/vue.global.js"></script>
 <script src="../vue/axios.min.js"></script>
 <script src="../vue/sweetalert2.all.min.js"></script>
+<script src="../vue/moment-with-locales.js"></script>
+<script src="../vue/qrcode.min.js"></script>
 <script src="../vue/socket.io.min.js"></script>
 <script type="text/javascript">
 	// new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
@@ -33,7 +35,7 @@
 <!-- jQuery Knob Chart -->
 <script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="../plugins/moment/moment.min.js"></script>
+<!-- <script src="../plugins/moment/moment.min.js"></script> -->
 <script src="../plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>

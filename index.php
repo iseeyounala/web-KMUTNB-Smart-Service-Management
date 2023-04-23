@@ -98,6 +98,8 @@
                                     location.replace("./admin/admin_page.php");
                                 }else if(admin_level == 2) {
 									location.replace("./room/room_page.php");
+								}else if(admin_level == 3){
+									location.replace("./sport/sport_page.php");
 								}
                             });
                         } else {

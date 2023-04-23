@@ -127,6 +127,100 @@ switch ($action) {
         }
         echo json_encode($data);
         break;
+    case 'get_student':
+        $sql = "SELECT * FROM tb_student AS a LEFT JOIN tb_department AS b ON a.dpm_id = b.dpm_id
+        LEFT JOIN tb_faculty AS c ON a.fct_id = c.fct_id";
+        $result = $conn->query($sql);
+        if ($result) {
+            while ($row = $result->fetch_object()) {
+                $data_[] = $row;
+            }
+            $data = [
+                'status' => true,
+                'result' => $data_
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'meg' => $conn->error
+            ];
+        }
+        echo json_encode($data);
+        break;
+    case 'getlist_announcement':
+        $sql = "SELECT * FROM tb_announcement";
+        $result = $conn->query($sql);
+        if ($result) {
+            while ($row = $result->fetch_object()) {
+                $data_[] = $row;
+            }
+            $data = [
+                'status' => true,
+                'result' => $data_
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'meg' => $conn->error
+            ];
+        }
+        echo json_encode($data);
+        break;
+    case 'add_announcement':
+        $announcement_name = $request_data->announcement_name;
+        $announcement_detail = $request_data->announcement_detail;
+        $sql = "INSERT INTO tb_announcement(announcement_name, announcement_detail, announcement_created_at) VALUES ('" . $announcement_name . "', '" . $announcement_detail . "', NOW())";
+        $result = $conn->query($sql);
+        if ($result) {
+            $data = [
+                'status' => true,
+                'meg' => 'สำเร็จ'
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'meg' => $announcement_name
+            ];
+        }
+        echo json_encode($data);
+        break;
+    case 'edit_announcement':
+        $announcement_id = $request_data->announcement_id;
+        $announcement_name = $request_data->announcement_name;
+        $announcement_detail = $request_data->announcement_detail;
+        $sql = "UPDATE tb_announcement SET announcement_name = '" . $announcement_name . "',
+                                           announcement_detail = '" . $announcement_detail . "' WHERE announcement_id = '" . $announcement_id . "'";
+        $result = $conn->query($sql);
+        if ($result) {
+            $data = [
+                'status' => true,
+                'meg' => 'สำเร็จ'
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'meg' => $conn->error
+            ];
+        }
+        echo json_encode($data);
+        break;
+    case 'del_announcement':
+        $announcement_id = $request_data->announcement_id;
+        $sql = "DELETE FROM tb_announcement WHERE announcement_id = '" . $announcement_id . "'";
+        $result = $conn->query($sql);
+        if ($result) {
+            $data = [
+                'status' => true,
+                'meg' => 'ลบข้อมูลสำเร็จ'
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'meg' => $conn->error
+            ];
+        }
+        echo json_encode($data);
+        break;
     default:
         # code...
         break;
