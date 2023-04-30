@@ -9,7 +9,7 @@ if (isset($_SESSION['admin_id'])) {
     }
 } else {
     echo '<script type="text/javascript">';
-    echo 'location.replace("./index.php");';
+    echo 'location.replace("../index.php");';
     echo 'alert("เข้าสู่ระบบก่อนเข้าถึงหน้านี้")';
     echo '</script>';
 }

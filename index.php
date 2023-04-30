@@ -54,6 +54,12 @@
 							</div>
 							<!-- /.col -->
 						</div>
+						<div class="row mt-2">
+							<div class="col-12">
+								<button type="submit" class="btn btn-warning btn-block">สมัคร</button>
+							</div>
+							<!-- /.col -->
+						</div>
 					</div>
 					<!-- /.social-auth-links -->
 				</div>
@@ -67,58 +73,58 @@
 	<script src="./vue/axios.min.js"></script>
 	<script src="./vue/sweetalert2.all.min.js"></script>
 	<script>
-        Vue.createApp({
-            data() {
-                return {
-                    admin_username: '',
-                    admin_password: '',
-                };
-            },
-            methods: {
-                login() {
-                    axios.post("./action/api_login.php", {
-                        // action: 'login',
-                        admin_username: this.admin_username,
-                        admin_password: this.admin_password
-                    }).then((res) => {
-                        let {
-                            status,
-                            admin_level,
-                            meg
-                        } = res.data;
-                        if (status) {
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: meg,
-                                showConfirmButton: false,
-                                timer: 1500,
-                            }).then(() => {
-                                if (admin_level == 0) {
-                                    location.replace("./admin/admin_page.php");
-                                }else if(admin_level == 2) {
+		Vue.createApp({
+			data() {
+				return {
+					admin_username: '',
+					admin_password: '',
+				};
+			},
+			methods: {
+				login() {
+					axios.post("./action/api_login.php", {
+						// action: 'login',
+						admin_username: this.admin_username,
+						admin_password: this.admin_password
+					}).then((res) => {
+						let {
+							status,
+							admin_level,
+							meg
+						} = res.data;
+						if (status) {
+							Swal.fire({
+								position: "top-end",
+								icon: "success",
+								title: meg,
+								showConfirmButton: false,
+								timer: 1500,
+							}).then(() => {
+								if (admin_level == 0) {
+									location.replace("./admin/admin_page.php");
+								} else if (admin_level == 2) {
 									location.replace("./room/room_page.php");
-								}else if(admin_level == 3){
+								} else if (admin_level == 3) {
 									location.replace("./sport/sport_page.php");
 								}
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: "error",
-                                text: meg,
-                            });
-                        }
-                        console.log(res.data);
-                    }).catch((err) => {
-                        console.error(err);
-                    })
-                }
-            },
-            created() {
-                // console.log("login")
-            },
-        }).mount("#login");
-    </script>
+							});
+						} else {
+							Swal.fire({
+								icon: "error",
+								text: meg,
+							});
+						}
+						console.log(res.data);
+					}).catch((err) => {
+						console.error(err);
+					})
+				}
+			},
+			created() {
+				// console.log("login")
+			},
+		}).mount("#login");
+	</script>
 	<!-- jQuery -->
 	<script src="../plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->

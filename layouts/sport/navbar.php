@@ -11,7 +11,7 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item">
-        <a class="btn btn-success" href="./logout.php" type="button">ออกจากระบบ</a>
+        <a class="btn btn-success" href="../logout.php" type="button">ออกจากระบบ</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">

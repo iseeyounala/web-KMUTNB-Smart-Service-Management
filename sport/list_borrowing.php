@@ -48,9 +48,12 @@
                                 </td>
                                 <td>
                                     <div v-if="data.eq_br_status == 0">
-                                        <span class="badge badge-danger">ยืมอยู่</span>
+                                        <span class="badge badge-danger">รอยืม</span>
                                     </div>
                                     <div v-else-if="data.eq_br_status == 1">
+                                        <span class="badge badge-warning">ยืมอยู่</span>
+                                    </div>
+                                    <div v-else-if="data.eq_br_status == 2">
                                         <span class="badge badge-success">คืนอุปกรณ์แล้ว</span>
                                     </div>
                                 </td>
