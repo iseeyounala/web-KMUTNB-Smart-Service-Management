@@ -72,6 +72,15 @@
              </p>
            </a>
          </li>
+         <li class="nav-item">
+           <a href="./room_page.php?page=list_detail_room" class="nav-link">
+             <i class="nav-icon fa fa-tags"></i>
+             <p>
+               ข้อมูลรายละเอียดห้อง
+               <!-- <span class="badge badge-info right">2</span> -->
+             </p>
+           </a>
+         </li>
          <li class="nav-header">ตั้งค่าระบบ</li>
          <li class="nav-item">
            <a href="./room_page.php?page=list_check_point" class="nav-link">

@@ -62,6 +62,7 @@
                                     <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#qr_modal" data-backdrop="static" @click="set_qr_code(data)">
                                         <i class="nav-icon fa fa-qrcode"></i>
                                     </button>
+                                    <button type="button" class="btn btn-warning m-2" data-toggle="modal" data-target="#edit_modal" data-backdrop="static" @click="set_qr_code(data)">แก้ไข</button>
                                     <button type="button" class="btn btn-danger m-2" @click="handle_del(data)">ลบ</button>
                                 </td>
                             </tr>
@@ -135,6 +136,38 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">แก้ไข</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clear_qr_code()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">เวลาเข้า</label>
+                                        <input type="time" class="form-control" v-model="booking_start_time">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">เวลาออก</label>
+                                        <input type="time" class="form-control" v-model="booking_end_time">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                            <button type="button" class="btn btn-warning" @click="handle_edit()">แก้ไข</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>
@@ -193,6 +226,7 @@
                     booking_status: data.booking_status
                 }
                 new QRCode(document.getElementById("qrcode"), `${JSON.stringify(a)}`);
+                this.booking_rtt_id = data.booking_rtt_id;
                 this.std_number_id = data.std_number_id;
                 this.std_fname = data.std_fname;
                 this.std_lname = data.std_lname;
@@ -228,6 +262,50 @@
                         axios.post("../action/room/action.php", {
                             action: 'del_booking',
                             booking_rtt_id: data.booking_rtt_id,
+                        }).then((res) => {
+                            let {
+                                status,
+                                meg
+                            } = res.data;
+                            if (status) {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: meg,
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                });
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 2000);
+                            } else {
+                                Swal.fire({
+                                    icon: "error",
+                                    text: meg,
+                                });
+                            }
+                        }).catch((err) => {
+                            console.error(err)
+                        })
+                    }
+                });
+            },
+            handle_edit(){
+                Swal.fire({
+                    title: "ต้องการแก้ไขข้อมูล?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "ยืนยัน",
+                    cancelButtonText: "ยกเลิก",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.post("../action/room/action.php", {
+                            action: 'edit_booking',
+                            booking_rtt_id: this.booking_rtt_id,
+                            booking_start_time: this.booking_start_time,
+                            booking_end_time: this.booking_end_time,
                         }).then((res) => {
                             let {
                                 status,

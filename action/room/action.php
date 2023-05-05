@@ -236,6 +236,98 @@ switch ($action) {
         }
         echo json_encode($data);
         break;
+    case 'edit_booking':
+        $booking_rtt_id = $request_data->booking_rtt_id;
+        $booking_start_time = $request_data->booking_start_time;
+        $booking_end_time = $request_data->booking_end_time;
+        $sql = "UPDATE tb_booking_room_tutor SET booking_start_time = '" . $booking_start_time . "', 
+                                                 booking_end_time = '" . $booking_end_time . "' WHERE booking_rtt_id = '" . $booking_rtt_id . "'";
+        $result = $conn->query($sql);
+        if ($result) {
+            $data = [
+                'status' => true,
+                'meg' => 'แก้ไขสำเร็จ'
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'meg' => $conn->error
+            ];
+        }
+        echo json_encode($data);
+        break;
+    case 'get_list_detail_room':
+        $sql = "SELECT * FROM tb_detail_room AS a LEFT JOIN tb_room_tutor AS b ON a.rtt_id = b.rtt_id";
+        $result = $conn->query($sql);
+        if ($result) {
+            while ($row = $result->fetch_object()) {
+                $data_[] = $row;
+            }
+            $data = [
+                'status' => true,
+                'result' => $data_
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'result' => $conn->error
+            ];
+        }
+        echo json_encode($data);
+        break;
+    case 'add_detail_room':
+        $rtt_id = $request_data->rtt_id;
+        $detail_room_name = $request_data->detail_room_name;
+        $sql = "INSERT INTO tb_detail_room(rtt_id, detail_room_name) VALUES ('" . $rtt_id . "', '" . $detail_room_name . "')";
+        $result = $conn->query($sql);
+        if ($result) {
+            $data = [
+                'status' => true,
+                'meg' => "เพิ่มสำเร็จ"
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'meg' => $conn->error
+            ];
+        }
+        echo json_encode($data);
+        break;
+    case 'edit_detail_room':
+        $detail_room_id = $request_data->detail_room_id;
+        $detail_room_name = $request_data->detail_room_name;
+        $sql = "UPDATE tb_detail_room SET detail_room_name = '" . $detail_room_name . "' WHERE detail_room_id = '" . $detail_room_id . "'";
+        $result = $conn->query($sql);
+        if ($result) {
+            $data = [
+                'status' => true,
+                'meg' => "แก้ไขสำเร็จ"
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'meg' => $conn->error
+            ];
+        }
+        echo json_encode($data);
+        break;
+    case 'del_detail_room':
+        $detail_room_id = $request_data->detail_room_id;
+        $sql = "DELETE FROM tb_detail_room WHERE detail_room_id = '" . $detail_room_id . "'";
+        $result = $conn->query($sql);
+        if ($result) {
+            $data = [
+                'status' => true,
+                'meg' => 'ลบข้อมูลสำเร็จ'
+            ];
+        } else {
+            $data = [
+                'status' => false,
+                'meg' => $conn->error
+            ];
+        }
+        echo json_encode($data);
+        break;
     default:
         # code...
         break;

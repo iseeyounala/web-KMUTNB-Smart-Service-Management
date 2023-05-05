@@ -56,7 +56,7 @@
 						</div>
 						<div class="row mt-2">
 							<div class="col-12">
-								<button type="submit" class="btn btn-warning btn-block">สมัคร</button>
+								<button type="submit" class="btn btn-warning btn-block" @click="goToRegister()">สมัคร</button>
 							</div>
 							<!-- /.col -->
 						</div>
@@ -118,6 +118,9 @@
 					}).catch((err) => {
 						console.error(err);
 					})
+				},
+				goToRegister(){
+					location.replace("./register.php");
 				}
 			},
 			created() {
